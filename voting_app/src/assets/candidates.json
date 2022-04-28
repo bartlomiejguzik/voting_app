@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Johny Bravo",
+      "votes": 2
+    },
+    {
+      "id": "2",
+      "name": "Pluto",
+      "votes": 5
+    }
+  ]
+}

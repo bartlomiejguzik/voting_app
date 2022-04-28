@@ -1,10 +1,39 @@
-<h1>Voting app</h1>
+<h1 class="padding30">Voting app</h1>
 
-
-<div class="grid">
-  <div class="col-12">
-    <div class="col-6">
-      <app-voters-table></app-voters-table>
-    </div>
+<div class="grid-container">
+  <div class="grid-item">
+    <app-voters-table></app-voters-table>
+  </div>
+  <div class="grid-item">
+    <app-candidates-table></app-candidates-table>
   </div>
 </div>
+
+<hr>
+
+<h1 class="padding30">Vote!</h1>
+
+<p-dropdown
+  class="padding30"
+  [options]="voters"
+  [(ngModel)]="selectedVoter"
+  placeholder="I am"
+  optionLabel="name"
+  [showClear]="true"
+></p-dropdown>
+
+<p-dropdown
+  class="padding30"
+  [options]="candidates"
+  [(ngModel)]="selectedCandidat"
+  placeholder="I vote for"
+  optionLabel="name"
+  [showClear]="true"
+></p-dropdown>
+
+<p-button
+  class="padding30"
+  label="Submit"
+  icon="pi pi-check"
+  iconPos="right"
+></p-button>

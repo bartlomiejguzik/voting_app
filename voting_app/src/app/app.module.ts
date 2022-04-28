@@ -29,11 +29,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { VoterService } from './services/voter.service';
+import { CandidatesTableComponent } from './components/candidates-table/candidates-table.component';
+import { CandidatService } from './services/candidat.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VotersTableComponent
+    VotersTableComponent,
+    CandidatesTableComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,7 @@ import { VoterService } from './services/voter.service';
     InputTextareaModule
 
   ],
-  providers: [ConfirmationService, VoterService, MessageService],
+  providers: [ConfirmationService, VoterService, MessageService, CandidatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

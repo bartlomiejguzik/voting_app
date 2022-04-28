@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Person } from 'src/app/models/person.model';
+import { Voter } from 'src/app/models/voter.model';
 import { VoterService } from 'src/app/services/voter.service';
 
 @Component({
@@ -12,16 +12,31 @@ export class VotersTableComponent implements OnInit {
 
   voterDialog: boolean = false;
 
-  voters: Person[] = [];
+  voters: Voter[] = [];
 
-  voter!: Person;
+  voter!: Voter;
 
   submitted: boolean = false;
+
+  cols: any[] = [];
 
   constructor(private voterService: VoterService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.voterService.getVoters().then(data => this.voters = data);
+
+    this.cols = [
+      {
+        header: 'Name',
+        field: 'name',
+        minWidth: '70%'
+      },
+      {
+        header: 'Has voted',
+        field: 'has_voted',
+        minWidth: '30%'
+      }
+    ];
   }
 
   openNew(): void {
@@ -39,14 +54,14 @@ export class VotersTableComponent implements OnInit {
     this.submitted = true;
 
     if (this.voter) {
-        this.voter.id = this.createId();
-        this.voters.push(this.voter);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Voter Created', life: 3000 });
-      }
+      this.voter.id = this.createId();
+      this.voter.has_voted = false;
+      this.voters.push(this.voter);
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Voter Created', life: 3000 });
+    }
 
-      this.voters = [...this.voters];
-      this.voterDialog = false;
-      this.voter = {};
+    this.voterDialog = false;
+    this.voter = {};
 
   }
 

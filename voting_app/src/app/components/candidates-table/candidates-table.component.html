@@ -4,14 +4,14 @@
   <p-table
     #dt
     [rows]="10"
-    [value]="voters"
+    [value]="candidates"
     [columns]="cols"
     styleClass="p-datatable-gridlines"
     responsiveLayout="scroll"
   >
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between caption_margin">
-        <h5 class="center">Voters</h5>
+        <h5 class="center">Candidates</h5>
         <button
           pButton
           pRipple
@@ -36,34 +36,25 @@
     </ng-template>
     <ng-template
       pTemplate="body"
-      let-voter
+      let-candidat
       let-columns="columns"
     >
       <tr>
-        <ng-container
+        <td
           *ngFor="let col of columns"
           [style]="{ 'width': col.minWidth }"
         >
-          <ng-container [ngSwitch]="col.field">
-            <td *ngSwitchCase="'has_voted'">
-              <input
-                class="center_checkbox"
-                type="checkbox"
-                [checked]="voter.has_voted"
-              >
-            </td>
-            <td *ngSwitchDefault>{{ voter[col.field] }}</td>
-          </ng-container>
-        </ng-container>
+          {{candidat[col.field]}}
+        </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
 
 <p-dialog
-  [(visible)]="voterDialog"
+  [(visible)]="candidatDialog"
   [style]="{width: '450px'}"
-  header="Voter Details"
+  header="Candidat Details"
   [modal]="true"
   styleClass="p-fluid"
 >
@@ -74,7 +65,7 @@
         type="text"
         pInputText
         id="name"
-        [(ngModel)]="voter.name"
+        [(ngModel)]="candidat.name"
         autofocus
       >
     </div>
@@ -94,10 +85,10 @@
       pButton
       pRipple
       label="Save"
-      [disabled]="!voter.name"
+      [disabled]="!candidat.name"
       icon="pi pi-check"
       class="p-button-text"
-      (click)="saveVoter()"
+      (click)="saveCandidat()"
     ></button>
   </ng-template>
 </p-dialog>
