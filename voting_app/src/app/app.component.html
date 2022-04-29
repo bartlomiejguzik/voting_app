@@ -32,6 +32,7 @@
 ></p-dropdown>
 
 <p-button
+  [disabled]="!selectedCandidat || !selectedVoter"
   class="padding30"
   label="Submit"
   icon="pi pi-check"
